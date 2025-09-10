@@ -1,0 +1,15 @@
+# Logs
+**/logs
+**/*.log
+
+# Local
+**/node_modules
+**/dist
+**/yarn.lock
+**/.env
+/admin
+/client
+
+# Firebase
+**/.firebase*
+**/firebase*
