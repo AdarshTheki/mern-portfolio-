@@ -1,0 +1,27 @@
+name: Build & Push Docker Image
+
+on:
+  push:
+    branches: ['master']
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build & Push Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USER }}/cartify-server ./server
+          docker push ${{ secrets.DOCKER_USER }}/cartify-server
+          docker build -t ${{ secrets.DOCKER_USER }}/cartify-admin ./admin
+          docker push ${{ secrets.DOCKER_USER }}/cartify-admin
+          docker build -t ${{ secrets.DOCKER_USER }}/cartify-client ./client
+          docker push ${{ secrets.DOCKER_USER }}/cartify-client
