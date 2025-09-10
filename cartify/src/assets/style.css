@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+* {
+  @apply border-gray-300;
+}
+
+button {
+  @apply cursor-pointer duration-200 ease-in hover:opacity-75;
+}
